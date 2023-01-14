@@ -1373,19 +1373,18 @@ retry:
 		for match := range matches {
 			technologies = append(technologies, match)
 		}
-
+		builder.WriteString(" [")
 		if len(technologies) > 0 {
 			sort.Strings(technologies)
 			technologies := strings.Join(technologies, ",")
 
-			builder.WriteString(" [")
 			if !scanopts.OutputWithNoColor {
 				builder.WriteString(aurora.Magenta(technologies).String())
 			} else {
 				builder.WriteString(technologies)
 			}
-			builder.WriteRune(']')
 		}
+		builder.WriteRune(']')
 	}
 
 	var extractRegex []string
